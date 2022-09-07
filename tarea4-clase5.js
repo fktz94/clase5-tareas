@@ -28,12 +28,11 @@ function crearArray() {
         for (let i = 0; i < $numerosDeLaLista.length; i++) {
             const numeros = Number($numerosDeLaLista[i].textContent);
             arrayConLosNumeros.push(numeros);
-
         }
         const menor = Math.min(...arrayConLosNumeros);
         // console.log(menor);
         const $numeroMenor = document.querySelector('#menor')
-        $numeroMenor.textContent = `El número mas pequeño de la lista es ${menor}`;
+        $numeroMenor.textContent = `El número más pequeño de la lista es ${menor}`;
     }
     numeroMasPequenio();
 
@@ -42,22 +41,43 @@ function crearArray() {
         for (let i = 0; i < $numerosDeLaLista.length; i++) {
             const numeros = Number($numerosDeLaLista[i].textContent);
             arrayConLosNumeros.push(numeros);
-
         }
         const mayor = Math.max(...arrayConLosNumeros);
-        console.log(mayor);
+        // console.log(mayor);
 
-        // const $numeroMayor = document.querySelector('#mayor')
-        // $numeroMayor.textContent = `...`;
+        const $numeroMayor = document.querySelector('#mayor')
+        $numeroMayor.textContent = `El número más grande de la lista es ${mayor}`;
     }
     numeroMasGrande();
 
 
-    function repeticion() {
-
+    function numeroFrecuente() {
+        let arrayConLosNumeros = [];
+        for (let i = 0; i < $numerosDeLaLista.length; i++) {
+            const numeros = Number($numerosDeLaLista[i].textContent);
+            arrayConLosNumeros.push(numeros);
+        }
+        // console.log(arrayConLosNumeros);
+        let contadorBase = 1;
+        let contadorInterno = 0;
+        let numeroMasRepetido;
+        for (let i = 0; i < arrayConLosNumeros.length; i++) {
+            for (let j = i; j < arrayConLosNumeros.length; j++) {
+                if (arrayConLosNumeros[i] == arrayConLosNumeros[j])
+                    contadorInterno++;
+                if (contadorBase < contadorInterno) {
+                    contadorBase = contadorInterno;
+                    numeroMasRepetido = arrayConLosNumeros[i];
+                }
+            }
+            contadorInterno = 0;
+        }
+        // console.log(`${numeroMasRepetido} ( ${contadorBase} times ) `);
+        const $mayorRepeticion = document.querySelector('#repeticion')
+        $mayorRepeticion.textContent = `El número que más se repite es ${numeroMasRepetido}, un total de ${contadorBase} veces.`;
     }
-    // const $mayorRepeticion = document.querySelector('#repeticion')
-    // $mayorRepeticion.textContent = `...`;
+    numeroFrecuente()
+
 }
 crearArray();
 
