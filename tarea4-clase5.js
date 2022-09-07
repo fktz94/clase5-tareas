@@ -7,29 +7,57 @@
 // 4. obtener el número que más se repite y mostrarlo en un <em> pre-creado con el texto "El número más frecuente es..."
 
 function crearArray() {
-    let $numerosDeLaOl = document.querySelectorAll('ol > li')
+    let $numerosDeLaLista = document.querySelectorAll('ol > li')
 
     function calcularPromedio() {
         let contador = 0;
-        for (let i = 0; i < $numerosDeLaOl.length; i++) {
-            contador += Number($numerosDeLaOl[i].textContent);
+        for (let i = 0; i < $numerosDeLaLista.length; i++) {
+            contador += Number($numerosDeLaLista[i].textContent);
         }
         // console.log(contador);
-        const promedio = contador / $numerosDeLaOl.length;
+        const promedio = contador / $numerosDeLaLista.length;
+        const promedioToFixed = promedio.toFixed(2)
         // console.log(promedio);
         const $domPromedio = document.querySelector('#promedio')
-        $domPromedio.textContent = `El promedio es de ${promedio}`;
+        $domPromedio.textContent = `El promedio es de ${promedioToFixed}`;
     }
     calcularPromedio();
 
-    function numeroPequenio() {
-        for (let i = 0; i < $numerosDeLaOl.length; i++) {
-            const numeros = $numerosDeLaOl[i];
-            let mathMin = Math.min(numeros);
-            console.log(mathMin);
+    function numeroMasPequenio() {
+        let arrayConLosNumeros = [];
+        for (let i = 0; i < $numerosDeLaLista.length; i++) {
+            const numeros = Number($numerosDeLaLista[i].textContent);
+            arrayConLosNumeros.push(numeros);
+
         }
+        const menor = Math.min(...arrayConLosNumeros);
+        // console.log(menor);
+        const $numeroMenor = document.querySelector('#menor')
+        $numeroMenor.textContent = `El número mas pequeño de la lista es ${menor}`;
     }
-    numeroPequenio();
+    numeroMasPequenio();
+
+    function numeroMasGrande() {
+        let arrayConLosNumeros = [];
+        for (let i = 0; i < $numerosDeLaLista.length; i++) {
+            const numeros = Number($numerosDeLaLista[i].textContent);
+            arrayConLosNumeros.push(numeros);
+
+        }
+        const mayor = Math.max(...arrayConLosNumeros);
+        console.log(mayor);
+
+        // const $numeroMayor = document.querySelector('#mayor')
+        // $numeroMayor.textContent = `...`;
+    }
+    numeroMasGrande();
+
+
+    function repeticion() {
+
+    }
+    // const $mayorRepeticion = document.querySelector('#repeticion')
+    // $mayorRepeticion.textContent = `...`;
 }
 crearArray();
 
