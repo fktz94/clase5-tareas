@@ -72,7 +72,6 @@ function crearArray() {
             }
             contadorInterno = 0;
         }
-        // console.log(`${numeroMasRepetido} ( ${contadorBase} times ) `);
         const $mayorRepeticion = document.querySelector('#repeticion')
         $mayorRepeticion.textContent = `El número que más se repite es ${numeroMasRepetido}, un total de ${contadorBase} veces.`;
     }
