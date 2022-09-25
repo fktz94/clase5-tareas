@@ -1,3 +1,81 @@
+const $agregarClases = document.querySelector('#agregar-clases');
+const $divClases = document.querySelector('#div-clases');
+
+$agregarClases.onclick = function () {
+    function agregarClases() { }
+    const $cantidadDeClases = Number(document.querySelector('#cantidad-clases').value);
+    for (let i = 1; i <= $cantidadDeClases; i++) {
+        let $contenedorClase = document.createElement('div');
+        let $clasesLabel = document.createElement('label');
+        $clasesLabel.name = `clase-${i}`;
+        $clasesLabel.textContent = `Clase #${i}`;
+        let $clasesHoras = document.createElement('input');
+        $clasesHoras.placeholder = 'Horas';
+        $clasesHoras.id = `clase-${i}-horas`;
+        let $clasesMinutos = document.createElement('input');
+        $clasesMinutos.placeholder = 'Minutos';
+        $clasesMinutos.id = `clase-${i}-minutos`;
+        let $clasesSegundos = document.createElement('input');
+        $clasesSegundos.placeholder = 'Segundos';
+        $clasesSegundos.id = `clase-${i}-segundos`;
+        $divClases.appendChild($contenedorClase);
+        $contenedorClase.appendChild($clasesLabel);
+        $contenedorClase.appendChild($clasesHoras);
+        $contenedorClase.appendChild($clasesMinutos);
+        $contenedorClase.appendChild($clasesSegundos);
+    }
+    agregarClases();
+}
+
+const $botonCalcular = document.querySelector('#calcular');
+
+$botonCalcular.onclick = function () {
+    const $cantidadDeClases = Number(document.querySelector('#cantidad-clases').value);
+    let horas = 0;
+    let minutos = 0;
+    let segundos = 0;
+    for (let i = 1; i <= $cantidadDeClases; i++) {
+        let $horas = Number(document.querySelector(`#clase-${i}-horas`).value);
+        horas += $horas;
+        let $minutos = Number(document.querySelector(`#clase-${i}-minutos`).value);
+        minutos += $minutos;
+        let $segundos = Number(document.querySelector(`#clase-${i}-segundos`).value);
+        segundos += $segundos;
+    }
+
+    function pasarASegundos(a, b, c) {
+        a = a * 60;
+        b = (b + a) * 60;
+        c = b + c;
+        return c;
+    }
+    const totalSegundos = pasarASegundos(horas, minutos, segundos);
+
+    function calcularTiempo(a, b, c, d) {
+        c = d % 60;
+        if (c < 10) {
+            c = `0${c}`;
+        }
+        b = Math.floor((d % 3600) / 60);
+        if (b < 10) {
+            b = `0${b}`;
+        }
+        a = Math.floor((d / 3600) % 3600);
+        if (a < 10) {
+            a = `0${a}`;
+        }
+        document.getElementById('resultado').textContent = `El resultado es ${a} hs ${b} min ${c} segs`
+    }
+    calcularTiempo(horas, minutos, segundos, totalSegundos);
+}
+
+
+
+
+// A CONTINUACIÓN ES LA RESOLUCIÓN ANTIGÜA.
+
+
+/*
 const $calcular = document.querySelector('#calcular');
 
 
@@ -8,6 +86,12 @@ $calcular.onclick = function () {
     const clase3Segundos = document.querySelector('#clase3-segundos').value;
     const clase4Segundos = document.querySelector('#clase4-segundos').value;
     const clase5Segundos = document.querySelector('#clase5-segundos').value;
+
+    for (let i = 1; i <=`clase${i}Segundos`; i++)
+
+
+
+
 
     function sumarSegundos() {
         return Number(clase1Segundos) + Number(clase2Segundos) + Number(clase3Segundos) + Number(clase4Segundos) + Number(clase5Segundos);
@@ -70,4 +154,6 @@ $calcular.onclick = function () {
     }
     resultadoTiempo();
 }
+
+*/
 
